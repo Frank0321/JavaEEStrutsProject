@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		
+		<!-- 因為大家還是習慣看 java，很少去改 xml 的檔案 -->
+		<form-bean name="BackendformData" type="drink.vo.BackendformData" />
+		<form-bean name="FrontformData" type="drink.vo.FrontformData" />
+<!-- 		<form-bean name="LoginFormData" type="drink.vo.LoginFormData" /> -->
+	</form-beans>
+    <action-mappings>
+    	<!-- 後端的 Action -->    
+        <action path="/BackendActionUrl" type="drink.action.BackendAction" 
+        		parameter="action" name="BackendformData"> 
+        	<!-- 商品列表 -->
+            <forward name="GoodListView" path="/WEB-INF/Backend/VM_Backend_GoodsList.jsp" />
+            
+            <!-- 商品刪除 -->
+            <forward name="afterdeleteShow" path="/BackendActionUrl.do?action=queryGoods" redirect="true"/>
+            
+            <!-- 商品維護作業 -->
+            <!-- 需要與資料庫做交易的網站，需要使用 redirect(要中斷請求) -->
+            <!-- 為了執行 redirct，因此需要重導到 View 的畫面 -->
+            <forward name="GoodReplenishment" path="BackendActionUrl.do?action=goodsReplenishmentView" redirect="true"/>
+            <forward name="GoodReplenishmentView" path="/WEB-INF/Backend/VM_Backend_GoodsReplenishment.jsp"/>
+            
+            <!-- 商品新增上架 -->
+            <!-- 需要與資料庫做交易的網站，需要使用 redirect(要中斷請求) -->
+            <forward name="GoodsCreate" path="BackendActionUrl.do?action=goodsCreateView" redirect="true"/>
+            <forward name="GoodsCreateView" path="/WEB-INF/Backend/VM_Backend_GoodsCreate.jsp" />
+            
+            <!-- 銷售報表 -->
+            <forward name="GoodsSaleReportView" path="/WEB-INF/Backend/VM_Backend_GoodsSaleReport.jsp" />
+        </action>
+        
+         <!-- 前端 Action -->
+        <action path="/FrontendActionUrl" type="drink.action.FrontendAction" 
+        		parameter="action" name="FrontformData">
+            <forward name="VendingMachine" path="FrontendActionUrl.do?action=buyGoodsView" redirect="true"/>
+            <forward name="BuyGoodsView" path="/WEB-INF/Frontend/VendingMachine.jsp" />
+            <forward name="initial" path="/FrontendActionUrl.do?action=buyGoodsView" redirect="true"/>
+        </action>
+        
+        <!-- 登入的 Action -->
+        <action path="/LoginAction" type="drink.action.AccountLoginAction"
+        		parameter="action">
+        	<forward name="success" path="/FrontendActionUrl.do?action=initial" redirect="true"/>
+        	<forward name="fail" path="/AccountLogin.jsp" />
+        		
+        </action>
+    </action-mappings>
+</struts-config>

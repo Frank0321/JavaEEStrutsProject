@@ -1,0 +1,14 @@
+移除超連結的底線 :
+https://support.microsoft.com/en-us/topic/how-to-remove-underlines-from-hyperlinks-that-use-frontpage-2003-4702ea91-395a-38d7-9cf7-04672ada2bbc
+
+
+
+最困難的地方 : 
+我覺得最困難的地方是，前端點選購買商品的方式。
+因為我點選購買數量後，會切換到不同的分頁，去找看其他的商品。
+因此我這邊需要把他點的數量，先記錄下來。
+如何把數量給記錄下來 ?!
+
+如何解決 : 
+其實這邊我有上網去找他一些方法，後來才想到 JavaScript 的技術。
+這裡我使用的是 JavaScript，他點選時，就會觸發 JavaScript，去把值給存起來。
