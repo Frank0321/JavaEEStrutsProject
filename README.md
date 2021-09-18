@@ -1,7 +1,7 @@
-# 飲料販賣機 - 以 Struts2 實作 JavaEE
+# 飲料販賣機 - 以 Struts 實作 JavaEE
 
 - 此作品主要分成三個部分 : 登入畫面、前台、後台
-- 以 Struts 2  Framework 的方式進行撰寫
+- 以 Struts 1 Framework 的方式進行撰寫
 
 
 ## 使用到的技術
